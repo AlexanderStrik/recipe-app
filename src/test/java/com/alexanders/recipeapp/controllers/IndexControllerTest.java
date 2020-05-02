@@ -6,12 +6,15 @@ import java.util.Set;
 import com.alexanders.recipeapp.RecipeService;
 import com.alexanders.recipeapp.domain.Recipe;
 import com.alexanders.recipeapp.repositories.CategoryRepository;
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.ui.Model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -19,6 +22,9 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 @ExtendWith(SpringExtension.class)
 class IndexControllerTest {
@@ -34,6 +40,15 @@ class IndexControllerTest {
     @BeforeEach
     void setUp() {
         indexController = new IndexController(categoryRepository, recipeService);
+    }
+
+    @SneakyThrows
+    @Test
+    void testController() {
+        MockMvc mockMvc = MockMvcBuilders.standaloneSetup(indexController).build();
+        mockMvc.perform(get("/recipes"))
+               .andExpect(status().isOk())
+               .andExpect(view().name("index"));
     }
 
     @Test
