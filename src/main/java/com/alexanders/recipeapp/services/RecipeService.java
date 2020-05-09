@@ -1,4 +1,4 @@
-package com.alexanders.recipeapp;
+package com.alexanders.recipeapp.services;
 
 import java.util.Set;
 import java.util.stream.Collectors;

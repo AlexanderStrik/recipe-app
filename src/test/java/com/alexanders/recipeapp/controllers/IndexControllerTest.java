@@ -3,7 +3,7 @@ package com.alexanders.recipeapp.controllers;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.alexanders.recipeapp.RecipeService;
+import com.alexanders.recipeapp.services.RecipeService;
 import com.alexanders.recipeapp.domain.Recipe;
 import com.alexanders.recipeapp.repositories.CategoryRepository;
 import lombok.SneakyThrows;

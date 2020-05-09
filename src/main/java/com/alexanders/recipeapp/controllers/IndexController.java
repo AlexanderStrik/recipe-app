@@ -2,7 +2,7 @@ package com.alexanders.recipeapp.controllers;
 
 import java.util.Optional;
 
-import com.alexanders.recipeapp.RecipeService;
+import com.alexanders.recipeapp.services.RecipeService;
 import com.alexanders.recipeapp.domain.Category;
 import com.alexanders.recipeapp.domain.Recipe;
 import com.alexanders.recipeapp.repositories.CategoryRepository;
@@ -24,7 +24,6 @@ public class IndexController {
 
     @RequestMapping(path = {"/", "", "/index"})
     public String getIndexPage() {
-        System.out.println("1");
         return "index";
     }
 
