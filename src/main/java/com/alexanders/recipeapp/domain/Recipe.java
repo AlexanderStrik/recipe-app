@@ -41,7 +41,7 @@ public class Recipe {
     private String url;
     @Lob
     private String directions;
-    // todo add
+
     @Enumerated(value = EnumType.STRING)
     private Difficulty difficulty;
 

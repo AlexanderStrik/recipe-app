@@ -22,6 +22,7 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
@@ -48,15 +49,21 @@ class IndexControllerTest {
     void testGetRecipes() {
         mockMvc.perform(get("/recipes"))
                .andExpect(status().isOk())
-               .andExpect(view().name("index"));
+               .andExpect(view().name("index"))
+               .andExpect(model().attributeExists("recipes"));
     }
 
     @SneakyThrows
     @Test
     void testShowRecipe() {
-        mockMvc.perform(get("/recipe/show/1"))
+        final int id = 1;
+        Recipe recipe = new Recipe();
+        recipe.setId(id);
+        when(recipeService.getRecipeById(id)).thenReturn(recipe);
+        mockMvc.perform(get(String.format("/recipe/show/%s", id)))
                .andExpect(status().isOk())
-               .andExpect(view().name("recipe/index"));
+               .andExpect(view().name("recipe/index"))
+               .andExpect(model().attributeExists("recipe"));
     }
 
     @Test
