@@ -19,10 +19,6 @@ class UnitOfMeasureRepositoryIT {
     @Autowired
     private UnitOfMeasureRepository unitOfMeasureRepository;
 
-    @BeforeEach
-    void setUp() {
-    }
-
     @Test
     void findByDescription() {
         String teaspoon = "Teaspoon";

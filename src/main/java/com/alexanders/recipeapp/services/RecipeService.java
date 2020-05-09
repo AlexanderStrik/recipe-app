@@ -20,4 +20,8 @@ public class RecipeService {
     public Set<Recipe> getRecipes() {
         return StreamSupport.stream(recipeRepository.findAll().spliterator(), false).collect(Collectors.toSet());
     }
+
+    public Recipe getRecipeById(int id) {
+        return recipeRepository.findById(id).orElse(null);
+    }
 }

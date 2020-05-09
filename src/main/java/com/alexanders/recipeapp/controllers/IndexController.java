@@ -46,4 +46,11 @@ public class IndexController {
         model.addAttribute("recipes", recipes);
         return "index";
     }
+
+    @RequestMapping(path = "/recipe/show/{id}")
+    public String showRecipe(Model model, @PathVariable int id) {
+        Recipe recipe = recipeService.getRecipeById(id);
+        model.addAttribute("recipe", recipe);
+        return "recipe/index";
+    }
 }
